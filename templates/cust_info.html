@@ -1,0 +1,87 @@
+{% include 'branchheader.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer Info</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+        display: flex;
+        height: 100vh;
+        margin: 30px;
+        }
+</style>
+</head>
+
+<body>
+    <h1>Add Customer Info</h1> <br>
+        <!-- Search Customer Form -->
+
+
+    <form id="customerInfoForm" method="POST" action="/add_cust_info">
+
+        <label for="cust_name">Customer Name:</label>
+        <input type="text" id="cust_name" name="cust_name" required><br><br>
+
+        <label for="cust_mail">Customer Email:</label>
+        <input type="email" id="cust_mail" name="cust_mail"><br><br>
+
+        <label for="cust_mobile">Customer Mobile:</label>
+        <input type="text" id="cust_mobile" name="cust_mobile" required><label for="cust_whatsapp_number">Is This
+            Whatsapp Number:</label>
+        <input type="checkbox" id="cust_whatsapp_number" name="cust_whatsapp_number"><br><br>
+
+
+        <label for="cust_age">Customer Age:</label>
+        <input type="number" id="cust_age" name="cust_age" min="0" max="100"><br><br>
+
+        <label for="cust_gender">Customer Gender:</label>
+        <select id="cust_gender" name="cust_gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label for="cust_location">Customer Location:</label>
+        <input type="text" id="cust_location" name="cust_location"><br><br>
+
+        <label for="cust_pincode">Customer Pincode:</label>
+        <input type="text" id="cust_pincode" name="cust_pincode" pattern="\d{6}" title="Please enter a 6-digit number"
+            required><br><br>
+
+
+
+        <button type="submit" name="action" value="/add_customer_tnx">submit</button>
+        <button type="submit" name="action" value="/add_customer_to_branch">Add Another Customer</button>
+
+    </form>
+
+    <script>
+        // Handle add customer form submission
+        $('#customerInfoForm').submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            var formAction = $(this).find('button[type="submit"]:focus').val();
+
+            $.ajax({
+                url: '/add_cust_info',
+                method: 'POST',
+                data: formData,
+                success: function (response) {
+                    alert("Customer added successfully");
+                    // Redirect to the specified page after successful submission
+                    window.location.href = formAction;
+                },
+                error: function (error) {
+                    console.log('Error: ' + error.responseJSON.error);
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

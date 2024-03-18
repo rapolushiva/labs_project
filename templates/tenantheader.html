@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>labs</title>
+  <link rel="stylesheet" href="static/tenantheader.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="nav-side-menu">
+    <div class="brand">Tenant Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+      <ul id="menu-content" class="menu-content collapse out">
+        <li>
+          <a href="#">
+            <i class="fa fa-dashboard fa-lg"></i> Dashboard
+          </a>
+        </li>
+
+        <li data-toggle="collapse" data-target="#branch" class="collapsed active">
+          <a href="#"><i class="fa fa-gift fa-lg"></i> ManagementBranch <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="branch">
+          <a href="/branch_signup">
+            <li>Add Branch</li>
+          </a>
+          <li><a href="#">View & Update Branch</a></li>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#analytics" class="collapsed">
+          <a href="#"><i class="fa fa-globe fa-lg"></i> Analytics <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="analytics">
+          <li>Order DashBoard of all Branches</li>
+          <li>Total Orders by Branch</li>
+          <li>Total Remainder for every day</li>
+          <li>This Months Remainders</li>
+          <li>Remainder Value </li>
+        </ul>
+        <li data-toggle="collapse" data-target="#support" class="collapsed">
+          <a href="#"><i class="fa fa-car fa-lg"></i> Supports <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="support">
+          <li data-toggle="collapse" data-target="#contact" class="collapsed">
+            <a href="#"><i class="fa fa-car fa-lg"></i> Contact us <span class="arrow"></span></a>
+          </li>
+          <ul class="sub-menu collapse" id="contact">
+            <li>Manager</li>
+          </ul>
+        </ul>
+
+      </ul>
+    </div>
+  </div>
+
+</body>
+
+</html>

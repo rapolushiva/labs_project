@@ -1,0 +1,49 @@
+{% include'branchheader.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Data Form</title>
+</head>
+<body>
+    <h1>Customer Data Form</h1>
+    <form action="/add_cust_info" method="post">
+        <label for="Customer_name">Customer_name</label>
+        <input type="text" id="customer_name" name="Customer_name" required><br><br>
+
+        <label for="">Email:</label>
+        <input type="email" id="customer_mail" name="Customer_mail" required><br><br>
+
+        <label for="customer_mobile">Mobile Number:</label>
+        <input type="text" id="customer_mobile" name="Customer_mobile" required><br><br>
+
+        <label for="customer_alternate_mobile">Alternate Mobile Number:</label>
+        <input type="text" id="customer_alternate_mobile" name="Customer_alternate_mobile"><br><br>
+
+        <label for="customer_whatsapp_number">WhatsApp Number:</label>
+        <input type="text" id="customer_whatsapp_number" name="Customer_whatsapp_number"><br><br>
+
+        <label for="customer_age">Age:</label>
+        <input type="number" id="customer_age" name="Customer_age" required><br><br>
+
+        <label for="customer_gender">Gender:</label>
+        <select id="customer_gender" name="Customer_gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label for="customer_location">Location:</label>
+        <input type="text" id="customer_location" name="Customer_location" required><br><br>
+
+        <label for="customer_pincode">Pincode:</label>
+        <input type="text" id="customer_pincode" name="Customer_pincode" required><br><br>
+
+        <label for="client_id">Client Email_ID:</label>
+        <input type="text" id="client_id" name="client_id" required><br><br>
+
+        <label for="client_name">Client Name:</label>
+        <input type="text" id="client_name" name="client_name" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

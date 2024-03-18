@@ -1,0 +1,125 @@
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Tenant Info</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Add Tenant Info</h1>
+
+    <form id="tenantInfoForm" method="POST" action="/add_tenant_info">
+        <label for="tenant_mail">Email ID:</label>
+        <input type="email" id="tenant_mail" name="tenant_mail" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"><br><br>
+        <label for="confirm_password">Confirm Password</label>
+
+        <label for="tenant_name">Name:</label>
+        <input type="text" id="tenant_name" name="tenant_name" required><br><br>
+
+        <label for="tenant_mobile">Mobile:</label>
+        <input type="text" id="tenant_mobile" name="tenant_mobile" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+
+        <label for="biz_name">Business Name:</label>
+        <input type="text" id="biz_name" name="biz_name"><br><br>
+
+        <label for="est_date">Establishment Date:</label>
+        <input type="date" id="est_date" name="est_date"><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label for="domain_name">Domain Name:</label>
+        <select id="domain_name" name="domain_name"></select><br><br>
+
+        <label for="plan">Plan:</label>
+        <select id="plan" name="plan"></select><br><br>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode"><br><br>
+
+        <label for="referred_by">Referred by:</label>
+        <input type="text" id="referred_by" name="referred_by"><br><br>
+
+        <label for="referral_code">Referral Code:</label>
+        <input type="text" id="referral_code" name="referral_code"><br><br>
+
+        <label for="self_referral">Self Referral:</label>
+        <input type="checkbox" id="self_referral" name="self_referral"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to populate the plan dropdown from the API
+        function populatePlanDropdown() {
+            $.ajax({
+                url: '/get_plans_api',  // Replace with the actual endpoint URL
+                method: 'GET',
+                success: function(data) {
+                    var planDropdown = $('#plan');
+                    planDropdown.empty();
+                    $.each(data.plans, function(index, plan) {
+                        planDropdown.append('<option value="' + plan.plan_name + '">' + plan.plan_name + '</option>');
+                    });
+                }
+            });
+        }
+
+        // Function to populate the domain_name dropdown from the API
+        function populateDomainDropdown() {
+            $.ajax({
+                url: '/get_domains_api',  // Replace with the actual endpoint URL
+                method: 'GET',
+                success: function(data) {
+                    var domainDropdown = $('#domain_name');
+                    domainDropdown.empty();
+                    $.each(data.domains, function(index, domain) {
+                        domainDropdown.append('<option value="' + domain.domain_name + '">' + domain.domain_name + '</option>');
+                    });
+                }
+            });
+        }
+
+        // Call functions to populate dropdowns when the page loads
+        $(document).ready(function() {
+            populatePlanDropdown();
+            populateDomainDropdown();
+        });
+
+        // Handle form submission
+        $('#tenantInfoForm').submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                url: '/add_tenant_info',
+                method: 'POST',
+                data: formData,
+                success: function (response) {
+                    alert("Tenant added successfully");
+                    // Redirect or perform any other action after successful submission
+                },
+                error: function (error) {
+                    console.log('Error: ' + error.responseJSON.error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

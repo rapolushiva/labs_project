@@ -1,0 +1,66 @@
+{% include'branchheader.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Customer Data</h1>
+    
+    <table>
+        <tr>
+            <th>Branch ID</th>
+            <th>Cust ID</th>
+            <th>Cust Name</th>
+            <th>Cust Mobile</th>
+            <th>Service Name</th>
+            <th>Remainder Days</th>
+            <th>Current Date</th>
+            <th>Current Service Remark</th>
+            <th>Payment Mode</th>
+            <th>Paid Amount</th>
+            <th>Discount</th>
+            <th>Location</th>
+        </tr>
+
+        {% for customer in customer_data %}
+            <tr>
+                <td>{{ customer[0] }}</td>
+                <td>{{ customer[1] }}</td>
+                <td>{{ customer[2] }}</td>
+                <td>{{ customer[3] }}</td>
+                <td>{{ customer[4] }}</td>
+                <td>{{ customer[5] }}</td>
+                <td>{{ customer[6] }}</td>
+                <td>{{ customer[7] }}</td>
+                <td>{{ customer[8] }}</td>
+                <td>{{ customer[9] }}</td>
+                <td>{{ customer[10] }}</td>
+                <td>{{ customer[11] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

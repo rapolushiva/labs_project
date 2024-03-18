@@ -1,0 +1,119 @@
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Client Info</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Add Client Info</h1>
+   
+    <form id="clientInfoForm" method="POST" action="/add_client_info">
+        <label for="email_id">Email ID:</label>
+        <input type="email" id="email_id" name="email_id" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"><br><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+
+        <label for="biz_name">Business Name:</label>
+        <input type="text" id="biz_name" name="biz_name"><br><br>
+
+        <label for="est_date">Establishment Date:</label>
+        <input type="date" id="est_date" name="est_date"><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label for="domain_name">Domain Name:</label>
+        <select id="domain_name" name="domain_name"></select><br><br>
+
+        <label for="plan">Plan:</label>
+        <select id="plan" name="plan"></select><br><br>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode"><br><br>
+        <label for="Referred_by">Referred_by</label>
+        <input type="text" id="Referred_by" name="Referred_by"><br><br>
+        <label for="Referal_Code">Referral_code</label>
+        <input type="text" name="Referal_Code" id="Referal_Code"><br><br>
+        <label for="Referral_Self">Referral_Self</label>
+        <input type="text" name="Referral_Self" id="Referral_Self"><br><br>
+        <label for="As_branch">As_branch</label>
+        <input type="text" name="As_branch" id="As_branch"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to populate the plan dropdown from the API
+        function populatePlanDropdown() {
+            $.ajax({
+                url: '/get_plans_api',  // Replace with the actual endpoint URL
+                method: 'GET',
+                success: function(data) {
+                    var planDropdown = $('#plan');
+                    planDropdown.empty();
+                    $.each(data.plans, function(index, plan) {
+                        planDropdown.append('<option value="' + plan + '">' + plan + '</option>');
+                    });
+                }
+            });
+        }
+
+        // Function to populate the domain_name dropdown from the API
+        function populateDomainDropdown() {
+            $.ajax({
+                url: '/get_domains_api',  // Replace with the actual endpoint URL
+                method: 'GET',
+                success: function(data) {
+                    var domainDropdown = $('#domain_name');
+                    domainDropdown.empty();
+                    $.each(data.domains, function(index, domain) {
+                        domainDropdown.append('<option value="' + domain.domain_name + '">' + domain.domain_name + '</option>');
+                    });
+                }
+            });
+        }
+
+        // Call functions to populate dropdowns when the page loads
+        $(document).ready(function() {
+            populatePlanDropdown();
+            populateDomainDropdown();
+        });
+        // Handle form submission
+        $('#clientInfoForm').submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            console.log("FORM DATA::::  ", formData)
+            $.ajax({
+                url: '/add_client_info',
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    alert("Client added successfully");
+                    window.location.href = '/customer_info_form';
+                },
+                error: function(error) {
+                    console.log('Error NEW: ' + error.responseJSON.error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

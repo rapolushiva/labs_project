@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenants Details</title>
+</head>
+<body>
+
+<h2>Tenants Details</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Tenant ID</th>
+            <th>Tenant Name</th>
+            <th>Tenant Email</th>
+            <th>Tenant Mobile</th>
+            <th>Biz Name</th>
+            <th>Domain Name</th>
+            <th>Plan Expire Date</th>
+        </tr>
+    </thead>
+    <tbody id="tenantsTableBody">
+        <!-- Table body will be populated dynamically using JavaScript -->
+    </tbody>
+</table>
+<a class="username" href="/homepage">Back</a>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Fetch tenant data from the server
+    fetch('/get_all_tenants')
+        .then(response => response.json())
+        .then(data => {
+            // Populate the table with tenant details
+            const tableBody = document.getElementById('tenantsTableBody');
+            data.tenants.forEach(tenant => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).innerText = tenant.tenant_id;
+                row.insertCell(1).innerText = tenant.tenant_name;
+                row.insertCell(2).innerText = tenant.tenant_mail;
+                row.insertCell(3).innerText = tenant.tenant_mobile;
+                row.insertCell(4).innerText = tenant.biz_name;
+                row.insertCell(5).innerText = tenant.domain_name;
+                row.insertCell(6).innerText = tenant.expire_date;
+            });
+        })
+        .catch(error => console.error('Error fetching tenants:', error));
+});
+</script>
+
+</body>
+</html>

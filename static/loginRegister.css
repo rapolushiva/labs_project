@@ -1,0 +1,55 @@
+body {
+    background-color: rgb(75 81 75 / 14%);
+  }
+  .h1{
+      width: 40%;
+      float: left;
+  }
+
+  .container {
+    width: 600px;
+    height: 1000;
+    margin: 0 auto;
+    padding: 100px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .h1{
+      width: 40%;
+      float: middle;
+  }
+  .login-form {
+    width: 40%;
+    float: right;
+  }
+
+  .register-form {
+    width: 40%;
+    float: left;
+  }
+
+  .login-form input,
+  .register-form input {
+    width: 100%;
+    padding: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+
+/* Default button styles */
+.login-form button,
+.register-form button {
+width: 100%;
+padding: 10px;
+background-color:black;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+/* Button styles on hover */
+.login-form button:hover,
+.register-form button:hover {
+background-color: blue;
+color: white;
+}

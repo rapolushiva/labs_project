@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branches Details</title>
+</head>
+<body>
+
+<h2>Branches Details</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Tenant ID</th>
+            <th>Branch ID</th>
+            <th>Branch Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Plan Duration</th>
+            <th>Plan Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody id="branchesTableBody">
+        <!-- Table body will be populated dynamically using JavaScript -->
+    </tbody>
+</table>
+<a class="username" href="/homepage">Support</a>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Fetch branch data from the server
+    fetch('/fetch_all_branches')
+        .then(response => response.json())
+        .then(data => {
+            // Populate the table with branch details
+            const tableBody = document.getElementById('branchesTableBody');
+            data.branches.forEach(branch => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).innerText = branch.tenant_id;
+                row.insertCell(1).innerText = branch.branch_id;
+                row.insertCell(2).innerText = branch.branch_name;
+                row.insertCell(3).innerText = branch.username;
+                row.insertCell(4).innerText = branch.password;
+                row.insertCell(5).innerText = branch.plan_duration;
+                row.insertCell(6).innerText = branch.plan_expiry_date;
+            });
+        })
+        .catch(error => console.error('Error fetching branches:', error));
+});
+</script>
+
+</body>
+</html>

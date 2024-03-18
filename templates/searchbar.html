@@ -1,0 +1,174 @@
+{% include'branchheader.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labs</title>
+
+<style>
+
+            body {
+            display: flex;
+            height: 100vh;
+            margin: 30px;
+            }
+
+
+    #searchForm {
+        margin-bottom: 20px;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+
+    #searchResults {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    #notFoundMessage {
+        margin-top: 20px;
+        font-style: italic;
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<form id="searchForm">
+    <label for="searchMobile">Search by Customer Mobile:</label>
+    <input type="text" id="searchMobile" name="searchMobile" required>
+    <button type="button" id="searchButton">Search</button>
+</form>
+<a href="/add_customer_to_branch">Add New Customer</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/add_branch_services"> Add Services</a>
+
+<div id="searchResults">
+    <h1>Customer Data</h1>
+
+    <table id="customerTable" style="display: none;">
+        <tr>
+            <th>Branch ID</th>
+            <th>Tenant Id </th>
+            <th>Branch Name</th>
+            <th>Custome ID</th>
+            <th>Custome Name</th>
+            <th>Customer Mail</th>
+            <th>Custome Mobile</th>
+            <th>Is_Whatsapp_no</th>
+            <th>Customer Age</th>
+            <th>Custome Gender</th>
+            <th>Custome Location</th>
+            <th>Custome Pincode</th>
+            <th>+AddTransaction</th>
+
+        </tr>
+    </table>
+
+    <p id="notFoundMessage" style="display: none;">No results found.</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Handle search form submission
+    $('#searchButton').click(function () {
+        var searchMobile = $('#searchMobile').val();
+
+        // Make AJAX request to search endpoint
+        $.ajax({
+            url: '/search',
+            method: 'POST',
+            data: { searchMobile: searchMobile },
+            success: function (results) {
+                // Handle the search results
+                displaySearchResults(results);
+            },
+            error: function (error) {
+                console.log('Error: ' + error.responseJSON.error);
+            }
+        });
+    });
+
+    // Function to display search results
+    function displaySearchResults(results) {
+        var customerData = results.customer_data;
+        var customerTable = $('#customerTable');
+        var notFoundMessage = $('#notFoundMessage');
+
+        if (customerData.length > 0) {
+            // Display the table with results
+            customerTable.show();
+            notFoundMessage.hide();
+
+            // Clear existing rows
+            customerTable.find('tr:gt(0)').remove();
+
+            // Append new rows
+            for (var i = 0; i < customerData.length; i++) {
+                var row = $('<tr></tr>');
+                // Append your data to the row
+                row.append('<td>' + customerData[i][0] + '</td>'); 
+                row.append('<td>' + customerData[i][1] + '</td>');
+
+                row.append('<td>' + customerData[i][2] + '</td>'); 
+                row.append('<td name="cust_id">' + customerData[i][3] + '</td>');
+
+
+                row.append('<td>' + customerData[i][4] + '</td>'); 
+                row.append('<td>' + customerData[i][5] + '</td>');
+
+                row.append('<td>' + customerData[i][6] + '</td>'); 
+                row.append('<td>' + customerData[i][7] + '</td>');
+
+                row.append('<td>' + customerData[i][8] + '</td>'); 
+                row.append('<td>' + customerData[i][9] + '</td>');
+
+                row.append('<td>' + customerData[i][10] + '</td>'); 
+                row.append('<td>' + customerData[i][11] + '</td>');
+                row.append('<td><a class="transaction-link" href="/add_tnx_cust?cust_id=' + customerData[i][3] + '">+ Add Transaction</a></td>');
+
+                
+
+
+                  // Replace with actual data
+                // Add more columns as needed
+                // ...
+
+                customerTable.append(row);
+            }
+        } else {
+            // Display the "No results found" message
+            customerTable.hide();
+            notFoundMessage.show();
+        }
+    }
+</script>
+
+    
+</body>
+</html>

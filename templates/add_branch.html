@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="static/h2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>labs</title>
+    <!-- Add any additional styling or scripts if needed -->
+</head>
+
+<body >
+
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form action="/add_branch_info" method="POST">
+            <center><h1>Add Branch Info</h1></center>        
+            
+            <div class="form-group">
+                <label for="branch_name">Branch Name:</label>
+                <input type="text" id="branch_name" name="branch_name" required><br><br>
+            </div>
+            <div class="form-group">
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+            </div>
+            <div class="form-group">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+            
+            <a href="/branch_login_page">LogIN</a>
+        </form>
+
+
+
+    </div>
+</body>
+</html>
+
+

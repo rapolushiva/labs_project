@@ -1,0 +1,88 @@
+/* styles.css */
+/* Increase the width of the domain_name dropdown */
+#domain_name {
+    width: 150px; /* Adjust the width as needed */
+}
+
+/* Increase the width of the plan dropdown */
+#plan {
+    width: 150px; /* Adjust the width as needed */
+}
+#plan_name{
+    width: 150px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+/* Styles for the navigation header */
+
+/* Styles for the navigation header */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+}
+
+/* Styles for the left links */
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Styles for the "Username" on the right */
+.navbar .username {
+    float: right;
+    color: white;
+    padding: 14px 16px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.email {
+    font-size: 0.9rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}

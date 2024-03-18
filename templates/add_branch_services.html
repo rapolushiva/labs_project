@@ -1,0 +1,52 @@
+{% include 'branchheader.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+        display: flex;
+        height: 100vh;
+        margin: 30px;
+        }
+</style>
+    <title>labs</title>
+</head>
+
+<body>
+    <h2>Data Insert Form</h2>
+        <form action="/add_branch_services_data" method="post">
+
+            <label for="service_name">Service Name:</label>
+            <input type="text" name="service_name" required><br>
+
+            <label for="is_active">Is Active:</label>
+            <input type="checkbox" name="is_active"><br>
+
+            <label for="selling_price">Selling Price:</label>
+            <input type="text" name="selling_price" required><br>
+
+            <label for="mrp">MRP:</label>
+            <input type="text" name="mrp" required><br>
+
+            <label for="service_category">Service Category:</label>
+            <input type="text" name="service_category" required><br>
+
+            <label for="service_code">Service Code:</label>
+            <input type="text" name="service_code" required><br>
+
+            <label for="modified_date">Modified Date:</label>
+            <input type="date" name="modified_date" required><br>
+
+            <label for="modified_by">Modified By:</label>
+            <input type="text" name="modified_by" required><br>
+
+            <input type="submit" value="Insert Data">
+        </form>
+    
+</body>
+
+</html>

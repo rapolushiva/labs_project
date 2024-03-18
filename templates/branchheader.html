@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/branchheader.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>labs</title>
+    <link rel="stylesheet" href="static/h2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+          rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+          crossorigin="anonymous">
+</head>
+
+
+<body>
+<!-- Add this link wherever appropriate in your HTML template -->
+
+
+
+<div class="menu-container">
+    <div class="nav-side-menu">
+        <div class="brand">Brand Logo</div>
+
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li><a href="#"><i class="fa fa-dashboard fa-lg"></i>Branch Name</a></li>
+                <li data-toggle="collapse" data-target="#branch" class="collapsed active">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> Manage Customer <span class="arrow"></span></a>
+                    <ul class="sub-menu collapse" id="branch">
+                        <a href="/add_customer_to_branch"> <li>Add Customer</li> </a>
+                        <li><a href="#">View & Update Customer</a></li>
+                    </ul>
+                </li>
+                <li data-toggle="collapse" data-target="#analytics" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i> Analytics <span class="arrow"></span></a>
+                    <ul class="sub-menu collapse" id="analytics">
+                        <li>Total Transactions</li>
+                        <li>Total Transactions in this Month</li>
+                        <li>Total Remainders</li>
+                    </ul>
+                </li>
+                <li data-toggle="collapse" data-target="#transaction" class="collapsed active">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> Manage Transaction <span class="arrow"></span></a>
+                    <ul class="sub-menu collapse" id="transaction">
+                        <a href="/"> <li>Add Transaction</li> </a>
+                        <li><a href="#">View Transaction</a></li>
+                    </ul>
+                </li>
+
+                <li data-toggle="collapse" data-target="#support" class="collapsed">
+                    <a href="#"><i class="fa fa-car fa-lg"></i> Supports <span class="arrow"></span></a>
+                    <ul class="sub-menu collapse" id="support">
+                        <li data-toggle="collapse" data-target="#contact" class="collapsed">
+                            <a href="#"><i class="fa fa-car fa-lg"></i> Contact us <span
+                                        class="arrow"></span></a>
+                            <ul class="sub-menu collapse" id="contact">
+                                <li>Manager</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url_for('branch_logout') }}">
+                        <i class="fa fa-sign-out fa-lg"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tenant-info-container">
+    <!-- Add your tenant info content here -->
+    <!-- ... -->
+</div>
+
+</body>
+</html>

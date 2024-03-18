@@ -1,0 +1,84 @@
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>labs</title>
+  <style>
+    h1 {
+      margin-right: 0px;
+      /* Adjust the margin as needed */
+    }
+
+    .customer-id {
+      margin-left: 10px;
+      /* Adjust the margin as needed */
+    }
+  </style>
+</head>
+
+<body>
+  {% if s_cust_id %}
+  <h1>Add Tenant Data <span class="customer-id">Customer ID: {{ s_cust_id }}</span></h1>
+  {% endif %}
+  <form method="POST" action="/Add_tenant_service">
+    <label for="client_email_id">Tenant Mail:</label>
+    <input type="text" id="client_email_id" name="client_email_id" required><br><br>
+
+    <label for="service_name">Service Name:</label>
+    <input type="text" id="service_name" name="service_name" required><br><br>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required><br><br>
+
+    <label for="selling_price">Selling Price:</label>
+    <input type="number" step="0.01" id="selling_price" name="selling_price" required><br><br>
+
+    <label for="MRP">MRP:</label>
+    <input type="number" step="0.01" id="MRP" name="MRP" required><br><br>
+
+    <label for="discount">Discount:</label>
+    <input type="number" step="0.01" id="discount" name="discount" required><br><br>
+
+    <label for="is_active">Is Active:</label>
+    <select id="is_active" name="is_active" required>
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select><br><br>
+
+    <label for="created_by">Created By:</label>
+    <input type="text" id="created_by" name="created_by" required><br><br>
+
+    <label for="created_at">Created At:</label>
+    <input type="datetime-local" id="created_at" name="created_at" required><br><br>
+
+    <label for="modified_by">Modified By:</label>
+    <input type="text" id="modified_by" name="modified_by" required><br><br>
+
+    <label for="modified_date">Modified Date:</label>
+    <input type="datetime-local" id="modified_date" name="modified_date" required><br><br>
+
+    <label for="sub_category">Sub Category:</label>
+    <input type="text" id="sub_category" name="sub_category" required><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+  <script>fetch('/add_tenant_service', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });</script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Transaction Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Tenant Transaction Form</h1>
+    <form method="POST" action="/add_client_transaction">
+        <label for="client_id">Tenant Email_ID:</label>
+        <input type="text" id="client_id" name="client_id" required><br><br>
+
+        <label for="client_name">Tenant Name:</label>
+        <input type="text" id="client_name" name="client_name" required><br><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required><br><br>
+
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" required><br><br>
+
+        <label for="plan_name">Plan Name:</label>
+        <select id="plan_name" name="plan_name" required></select><br><br>
+
+        <label for="paid_amount">Paid Amount:</label>
+        <input type="number" step="0.01" id="paid_amount" name="paid_amount" required><br><br>
+
+        <label for="mode_of_payment">Mode of Payment:</label>
+        <input type="text" id="mode_of_payment" name="mode_of_payment" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        $(document).ready(function() {
+            // Call the function to populate the dropdown when the page loads
+            populatePlanDropdown();
+        });
+
+        function populatePlanDropdown() {
+            $.ajax({
+                url: '/get_plans_api',  // Replace with the actual endpoint URL
+                method: 'GET',
+                success: function(data) {
+                    var planDropdown = $('#plan_name');
+                    planDropdown.empty();
+                    $.each(data.plans, function(index, plan) {
+                        planDropdown.append('<option value="' + plan.plan_name + '">' + plan.plan_name + '</option>');
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
